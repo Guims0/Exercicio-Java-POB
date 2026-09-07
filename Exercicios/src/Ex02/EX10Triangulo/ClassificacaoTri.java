@@ -1,4 +1,4 @@
-package EX10Triangulo;
+package Ex02.EX10Triangulo;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package EX08AprovacaoAluno;
+package Ex02.EX08AprovacaoAluno;
 
 import java.util.Scanner;
 

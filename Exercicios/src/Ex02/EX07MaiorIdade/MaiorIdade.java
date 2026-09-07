@@ -1,3 +1,4 @@
+package Ex02.EX07MaiorIdade;
 
 import java.util.Scanner;
 

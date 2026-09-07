@@ -1,4 +1,4 @@
-package EX04AreaPerimetro;
+package Ex01.EX04AreaPerimetro;
 
 import java.util.Scanner;
 import java.text.DecimalFormat;

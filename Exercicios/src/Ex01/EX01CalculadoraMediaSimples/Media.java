@@ -1,4 +1,4 @@
-package EX01CalculadoraMediaSimples;
+package Ex01.EX01CalculadoraMediaSimples;
 
 import java.util.Scanner;
 import java.text.DecimalFormat;
