@@ -1,4 +1,4 @@
-package Ex02.EX06Par_Impa;
+package EX02.EX06Par_Impa;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package Ex01.EX05ConversorTempo;
+package EX01.EX05ConversorTempo;
 
 import java.util.Scanner;
 

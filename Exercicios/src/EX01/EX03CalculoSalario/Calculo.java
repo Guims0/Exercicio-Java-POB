@@ -1,4 +1,4 @@
-package Ex01.EX03CalculoSalario;
+package EX01.EX03CalculoSalario;
 
 import java.util.Scanner;
 import java.text.DecimalFormat;

@@ -1,4 +1,4 @@
-package Ex01.EX02ConversorTemperatura;
+package EX01.EX02ConversorTemperatura;
 
 
 import java.util.Scanner;

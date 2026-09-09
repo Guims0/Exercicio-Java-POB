@@ -1,4 +1,4 @@
-package Ex02.EX09MaiorNumero;
+package EX02.EX09MaiorNumero;
 
 import java.util.Scanner;
 
