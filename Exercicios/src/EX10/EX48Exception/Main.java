@@ -1,4 +1,4 @@
-package EX10.EX48TryCatch;
+package EX10.EX48Exception;
 
 public class Main {
     public static void main(String[] args) {

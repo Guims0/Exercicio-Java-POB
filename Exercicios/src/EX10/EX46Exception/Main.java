@@ -1,4 +1,4 @@
-package EX10.EX46TryCatch;
+package EX10.EX46Exception;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

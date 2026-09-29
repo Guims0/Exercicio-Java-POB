@@ -1,4 +1,4 @@
-package EX10.EX47TryCatch;
+package EX10.EX47Exception;
 
 import java.util.Scanner;
 

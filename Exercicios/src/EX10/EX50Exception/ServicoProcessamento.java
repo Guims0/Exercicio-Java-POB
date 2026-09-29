@@ -1,4 +1,4 @@
-package EX10.EX50TryCatch;
+package EX10.EX50Exception;
 
 import java.io.IOException;
 
