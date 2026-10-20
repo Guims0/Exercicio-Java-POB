@@ -1,9 +1,10 @@
-package fase06.L06Exercicio02.controle;
+package Exemplo.controle;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import fase06.L06Exercicio02.dominio.Produto;
+import Exemplo.dominio.Produto;
+
 
 public class ControlaProduto {
 

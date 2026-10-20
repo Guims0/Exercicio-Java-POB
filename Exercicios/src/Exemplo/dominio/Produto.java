@@ -1,4 +1,4 @@
-package fase06.L06Exercicio02.dominio;
+package Exemplo.dominio;
 
 public class Produto {
     private int id;
