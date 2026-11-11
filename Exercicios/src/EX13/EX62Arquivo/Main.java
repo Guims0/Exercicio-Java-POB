@@ -8,19 +8,31 @@ import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-        Path arquivoLog = Path.of("servidor.log");
+        Path caminho = Path.of("servidor.log");
 
-        try (Stream<String> linhas = Files.lines(arquivoLog)) {
-            List<String> erros = linhas
-                    .filter(linha -> linha.startsWith("[ERROR]"))
-                    .map(linha -> linha.replace("[ERROR]", "").trim())
-                    .toList();
+        try {
+            if (!Files.exists(caminho)) {
+                String logsIniciais = "[INFO] Servidor iniciado\n"
+                        + "[ERROR] Falha de conexao\n"
+                        + "[INFO] Usuario autenticado\n"
+                        + "[ERROR] Timeout no banco\n"
+                        + "[ERROR] Permissoes insuficientes\n";
+                Files.writeString(caminho, logsIniciais);
+            }
 
-            System.out.println("Total de erros encontrados: " + erros.size());
-            System.out.println("Mensagens de erro:");
-            erros.forEach(msg -> System.out.println("- " + msg));
+            try (Stream<String> linhas = Files.lines(caminho)) {
+                List<String> erros = linhas
+                        .filter(linha -> linha.startsWith("[ERROR]"))
+                        .map(linha -> linha.replace("[ERROR]", "").trim())
+                        .toList();
+
+                System.out.println("Total de erros encontrados: " + erros.size());
+                for (String erro : erros) {
+                    System.out.println("- " + erro);
+                }
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Erro ao ler o arquivo de log: " + e.getMessage());
         }
     }
 }

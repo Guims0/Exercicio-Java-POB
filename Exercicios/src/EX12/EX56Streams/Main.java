@@ -1,3 +1,5 @@
+package EX12.EX56Streams;
+
 import java.util.Arrays;
 import java.util.List;
 

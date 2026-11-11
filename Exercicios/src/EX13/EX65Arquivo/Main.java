@@ -9,20 +9,34 @@ import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-        Path origem = Path.of("clientes_bruto.txt");
-        Path destino = Path.of("clientes_padronizado.txt");
+        Path arquivoEntrada = Path.of("clientes_bruto.txt");
+        Path arquivoSaida = Path.of("clientes_padronizado.txt");
 
-        try (Stream<String> linhas = Files.lines(origem)) {
-            List<String> clientesTratados = linhas
-                    .map(String::trim)
-                    .filter(linha -> !linha.isBlank())
-                    .map(String::toUpperCase)
-                    .toList();
+        try {
+            if (!Files.exists(arquivoEntrada)) {
+                String nomesBrutos = "   joao silva  \n"
+                        + "\n"
+                        + " MARIA OLIVEIRA \n"
+                        + "  carlos souza\n"
+                        + "   \n"
+                        + "ana costa   \n";
+                Files.writeString(arquivoEntrada, nomesBrutos);
+            }
 
-            Files.write(destino, clientesTratados, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
-            System.out.println("Arquivo padronizado gerado com sucesso em " + destino.toAbsolutePath());
+            List<String> nomesPadronizados;
+
+            try (Stream<String> linhas = Files.lines(arquivoEntrada)) {
+                nomesPadronizados = linhas
+                        .map(linha -> linha.trim())
+                        .filter(linha -> !linha.isBlank())
+                        .map(linha -> linha.toUpperCase())
+                        .toList();
+            }
+
+            Files.write(arquivoSaida, nomesPadronizados, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+            System.out.println("Arquivo padronizado gravado com sucesso: " + arquivoSaida);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Erro ao processar arquivo de clientes: " + e.getMessage());
         }
     }
 }

@@ -3,32 +3,34 @@ package EX13.EX64Arquivo;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-        Path pastaRaiz = Path.of("src");
-        AtomicLong tamanhoTotalBytes = new AtomicLong(0);
+        Path diretorio = Path.of("Exercicios", "src");
+        if (!Files.exists(diretorio)) {
+            diretorio = Path.of("src");
+        }
 
-        try (Stream<Path> caminhoStream = Files.walk(pastaRaiz)) {
-            caminhoStream
-                    .filter(Files::isRegularFile)
+        try (Stream<Path> caminhos = Files.walk(diretorio)) {
+            List<Path> arquivosJava = caminhos
+                    .filter(p -> Files.isRegularFile(p))
                     .filter(p -> p.toString().endsWith(".java"))
-                    .forEach(caminho -> {
-                        try {
-                            long tamanho = Files.size(caminho);
-                            tamanhoTotalBytes.addAndGet(tamanho);
-                            Path relativo = pastaRaiz.relativize(caminho);
-                            System.out.printf("Arquivo: %s | Tamanho: %d bytes%n", relativo, tamanho);
-                        } catch (IOException e) {
-                            System.err.println("Erro ao obter tamanho do arquivo: " + caminho);
-                        }
-                    });
+                    .toList();
 
-            System.out.printf("%nTamanho total dos arquivos Java: %d bytes%n", tamanhoTotalBytes.get());
+            long somaTotalBytes = 0;
+
+            for (Path arquivo : arquivosJava) {
+                long tamanho = Files.size(arquivo);
+                somaTotalBytes += tamanho;
+                Path caminhoRelativo = diretorio.relativize(arquivo);
+                System.out.println(caminhoRelativo + " (" + tamanho + " bytes)");
+            }
+
+            System.out.println("Tamanho total dos arquivos Java: " + somaTotalBytes + " bytes");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Erro ao varrer o diretorio: " + e.getMessage());
         }
     }
 }
